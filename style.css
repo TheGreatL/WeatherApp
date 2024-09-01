@@ -12,12 +12,13 @@ body{
 .wrapper{
     display: flex;
     margin: auto;
-    background-color: green;
+    background-color: rgba(100, 148, 237, 0.425);
     padding: 3rem;
     max-width: 30rem;
     flex: 1;
     height: 30rem;
     border-radius: 3rem;
+
     box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.319);
 }
 input{
@@ -37,10 +38,6 @@ input{
 .display-container{
     flex: 1;
     
-    background-color: yellow;
-}
-.container >h1{
-    background-color: yellow;
 }
 .search-container{
     flex-direction: row;

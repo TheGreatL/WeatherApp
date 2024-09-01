@@ -8,22 +8,32 @@ const temperatureLabel = document.getElementById('temperatureLabel');
 searchButton.addEventListener('click',()=>{
     
         fetch(APIT_LINK+searchInput.value.toLowerCase())
-        .then(response => response.json())
+        .then(response => {
+            if(!response.ok){
+                throw error();
+            }
+            return response.json();
+        })
         .then(value=>{
-            weatherLocation.textContent = value.name;
-            console.log(value);
-            temprature.textContent = value.main.temp;
 
-            let iconTempPath = 'https://openweathermap.org/img/wn/';
-            value.weather.forEach(weather => {
-                iconTempPath+=`${weather.icon}@2x.png`;
-                temperatureIcon.src =iconTempPath;
-                temperatureLabel.textContent = weather.main;
-            });
+            const {name:location,
+                   main:{temp:temperature},
+                   weather:[{description:temperatureDescription,icon:temperatureIcn}]    
+                } =value;
+            console.log(location);
+            console.log(temperature);
+            console.log(temperatureDescription);
+            console.log(temperatureIcn);
+            weatherLocation.textContent = location;
+            console.log(value);
+            temprature.textContent = temperature;
+            temperatureIcon.src=`https://openweathermap.org/img/wn/${temperatureIcn}@2x.png`;
+            temperatureLabel.textContent = temperatureDescription;
         })
         .catch(error=>{weatherLocation.textContent="Invalid Input"
             temperatureIcon.src='';
             temperatureLabel.textContent='';
+            console.error(error);
             temprature.textContent='';
         });
 });
