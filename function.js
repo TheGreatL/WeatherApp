@@ -1,4 +1,4 @@
-import { APIT_LINK } from "./api.js";
+import APIT_LINK  from "./api.js";
 const searchButton  = document.querySelector('.button');
 const searchInput = document.querySelector('.search-input');
 const weatherLocation =document.querySelector('h1');
